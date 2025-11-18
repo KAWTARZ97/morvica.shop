@@ -1,182 +1,518 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAT Cargo VAD LLC</title>
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-            color: #333;
-        }
-        nav {
-            background: #000;
-            color: #fff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 30px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        nav .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-        nav ul li {
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-        }
-        .hero {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            padding: 80px 20px;
-            background: #111;
-            color: #fff;
-            min-height: 100vh;
-            animation: fadeIn 2s ease-in-out;
-        }
-        .hero-text {
-            max-width: 500px;
-            padding: 20px;
-            animation: slideInLeft 1.5s ease;
-        }
-        .hero-text h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-        .hero-text p {
-            font-size: 18px;
-            line-height: 1.6;
-        }
-        .hero-img img {
-            max-width: 400px;
-            width: 100%;
-            border-radius: 10px;
-            animation: slideInRight 1.5s ease;
-        }
-        .section {
-            padding: 60px 20px;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s ease;
-        }
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .section h2 {
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
-        .section p {
-            font-size: 18px;
-            line-height: 1.8;
-            color: #555;
-        }
-        .contact {
-            background: #e9e9e9;
-            padding: 60px 20px;
-        }
-        footer {
-            background: #000;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            font-size: 14px;
-        }
+  <meta charset="UTF-8" />
+  <title>SCI MARBENI G.L. – Immobilier & locations – Le Puy-en-Velay</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SCI MARBENI G.L. - Gestion et location immobilière à Le Puy-en-Velay.">
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideInLeft {
-            from { transform: translateX(-50px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes slideInRight {
-            from { transform: translateX(50px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-    </style>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main:#05070c;
+      --bg-card:#0a0f1a;
+      --accent-gold:#f1c06a;
+      --accent-blue:#4b8dff;
+      --text-main:#f7fbff;
+      --text-muted:#b6c3d6;
+      --border-soft:rgba(255,255,255,0.16);
+      --radius-xl:1.6rem;
+      --transition-fast:0.25s ease-out;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family:"DM Sans",system-ui,sans-serif;
+      background:
+        radial-gradient(circle at top,#151f33 0,#05070c 55%,#000000 100%);
+      color:var(--text-main);
+      min-height:100vh;
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+    }
+    ::-webkit-scrollbar{width:8px;}
+    ::-webkit-scrollbar-track{background:#020309;}
+    ::-webkit-scrollbar-thumb{
+      background:linear-gradient(to bottom,var(--accent-gold),var(--accent-blue));
+      border-radius:999px;
+    }
+    .max-width{max-width:1120px;margin:0 auto;padding:0 1.6rem;}
+
+    header{
+      position:sticky;top:0;z-index:40;
+      backdrop-filter:blur(18px);
+      background:linear-gradient(to bottom,rgba(4,6,12,0.96),transparent);
+      border-bottom:1px solid rgba(255,255,255,0.14);
+    }
+    .nav{
+      padding:1rem 0;
+      display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    }
+    .nav-brand{display:flex;align-items:center;gap:.8rem;}
+    .nav-logo{
+      width:44px;height:44px;border-radius:999px;
+      background:
+        radial-gradient(circle at 0 0,var(--accent-gold),transparent 60%),
+        radial-gradient(circle at 100% 100%,var(--accent-blue),transparent 60%);
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 0 0 2px rgba(255,255,255,0.16),0 14px 30px rgba(0,0,0,0.85);
+    }
+    .nav-logo span{
+      font-family:"Space Grotesk",sans-serif;
+      font-weight:700;font-size:1.05rem;letter-spacing:.08em;
+    }
+    .nav-text{display:flex;flex-direction:column;gap:.1rem;}
+    .nav-title{
+      font-family:"Space Grotesk",sans-serif;
+      font-size:1.05rem;text-transform:uppercase;letter-spacing:.16em;
+    }
+    .nav-subtitle{
+      font-size:.7rem;text-transform:uppercase;letter-spacing:.18em;
+      color:var(--text-muted);
+    }
+    .nav-links{display:flex;align-items:center;gap:1.3rem;font-size:.85rem;}
+    .nav-links a{
+      color:var(--text-muted);text-decoration:none;position:relative;padding-bottom:3px;
+      transition:color var(--transition-fast);
+    }
+    .nav-links a::after{
+      content:"";position:absolute;left:0;bottom:0;width:0;height:2px;border-radius:999px;
+      background:linear-gradient(to right,var(--accent-gold),var(--accent-blue));
+      transition:width var(--transition-fast);
+    }
+    .nav-links a:hover{color:var(--text-main);}
+    .nav-links a:hover::after{width:100%;}
+    .nav-cta{
+      font-size:.75rem;text-transform:uppercase;letter-spacing:.18em;
+      border-radius:999px;padding:.45rem 1.25rem;
+      border:1px solid rgba(255,255,255,0.22);
+      background:linear-gradient(135deg,rgba(241,192,106,0.3),rgba(75,141,255,0.3));
+      color:var(--text-main);cursor:pointer;
+      display:inline-flex;align-items:center;gap:.4rem;
+      transition:background var(--transition-fast),transform var(--transition-fast),box-shadow var(--transition-fast);
+    }
+    .nav-cta:hover{
+      background:linear-gradient(135deg,var(--accent-gold),var(--accent-blue));
+      transform:translateY(-1px);box-shadow:0 16px 34px rgba(0,0,0,0.9);
+    }
+
+    /* HERO */
+    .hero{padding:3rem 0 3.5rem;}
+    .hero-grid{
+      display:grid;grid-template-columns:minmax(0,3.1fr) minmax(0,2.4fr);
+      gap:3rem;align-items:center;
+    }
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:.55rem;
+      padding:.35rem .9rem;border-radius:999px;
+      border:1px solid rgba(255,255,255,0.18);
+      background:rgba(5,8,16,0.96);
+      font-size:.7rem;text-transform:uppercase;letter-spacing:.18em;
+      color:var(--text-muted);margin-bottom:1.1rem;
+    }
+    .eyebrow-dot{
+      width:8px;height:8px;border-radius:999px;
+      background:radial-gradient(circle,var(--accent-gold),var(--accent-blue));
+      box-shadow:0 0 14px rgba(241,192,106,0.9);
+    }
+    .hero-title{
+      font-family:"Space Grotesk",sans-serif;
+      font-size:clamp(2.5rem,4.1vw,3.3rem);
+      line-height:1.05;margin-bottom:1rem;letter-spacing:.01em;
+      text-shadow:0 18px 38px rgba(0,0,0,0.95);
+    }
+    .hero-title span{
+      background:linear-gradient(120deg,var(--accent-gold),var(--accent-blue));
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .hero-subtitle{
+      font-size:.98rem;color:var(--text-muted);
+      max-width:34rem;line-height:1.7;margin-bottom:1.7rem;
+    }
+    .hero-actions{display:flex;flex-wrap:wrap;gap:.9rem;margin-bottom:1.5rem;}
+    .btn-primary,.btn-ghost{
+      border-radius:999px;padding:.75rem 1.7rem;font-size:.82rem;
+      text-transform:uppercase;letter-spacing:.18em;
+      cursor:pointer;border:1px solid transparent;
+      display:inline-flex;align-items:center;gap:.55rem;
+      transition:transform var(--transition-fast),box-shadow var(--transition-fast),
+                 background var(--transition-fast),border-color var(--transition-fast),color var(--transition-fast);
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,var(--accent-gold),var(--accent-blue));
+      color:#05070c;box-shadow:0 18px 34px rgba(0,0,0,0.95);
+    }
+    .btn-primary:hover{transform:translateY(-2px) scale(1.01);box-shadow:0 24px 44px rgba(0,0,0,1);}
+    .btn-ghost{
+      border-color:rgba(255,255,255,0.26);background:rgba(4,8,16,0.97);color:var(--text-main);
+    }
+    .btn-ghost:hover{
+      background:rgba(4,8,16,1);border-color:var(--accent-gold);transform:translateY(-1px);
+    }
+    .hero-meta{
+      display:flex;flex-wrap:wrap;gap:2rem;font-size:.82rem;color:var(--text-muted);
+    }
+    .meta-label{
+      font-size:.7rem;text-transform:uppercase;letter-spacing:.18em;color:rgba(219,228,244,0.96);
+    }
+    .meta-value a{color:var(--accent-gold);text-decoration:none;}
+    .meta-value a:hover{text-decoration:underline;}
+
+    .hero-visual{position:relative;}
+    .hero-card{
+      border-radius:var(--radius-xl);
+      padding:1.1rem 1.1rem 1.3rem;
+      border:1px solid var(--border-soft);
+      background:radial-gradient(circle at top,rgba(255,255,255,0.08),rgba(7,12,24,0.98));
+      box-shadow:0 18px 40px rgba(0,0,0,0.96);
+      overflow:hidden;position:relative;
+    }
+    .hero-chip{
+      position:absolute;inset:1.1rem 1.1rem auto auto;
+      padding:.3rem .8rem;border-radius:999px;
+      font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;
+      background:rgba(4,8,16,0.98);border:1px solid rgba(255,255,255,0.32);
+      z-index:2;
+    }
+    .hero-images-grid{
+      display:grid;grid-template-columns:2fr 1.3fr;gap:.8rem;position:relative;z-index:1;
+    }
+    .hero-img-main,.hero-img-small{
+      border-radius:1.25rem;overflow:hidden;position:relative;isolation:isolate;
+    }
+    .hero-img-main{height:250px;}
+    .hero-img-small{height:115px;}
+    .hero-img-main img,.hero-img-small img{
+      width:100%;height:100%;object-fit:cover;display:block;
+      filter:contrast(1.06) saturate(1.05);
+      transform-origin:center;transition:transform .8s ease-out;
+    }
+    .hero-card:hover .hero-img-main img{transform:scale(1.06);}
+    .hero-card:hover .hero-img-small img{transform:scale(1.08);}
+    .hero-floating{
+      position:absolute;right:.7rem;bottom:.6rem;width:60%;
+      transform:translateY(10%);
+      border-radius:1.3rem;padding:.85rem .95rem;
+      background:rgba(4,8,16,0.98);border:1px solid rgba(255,255,255,0.22);
+      box-shadow:0 18px 40px rgba(0,0,0,0.98);
+      font-size:.78rem;color:var(--text-muted);
+    }
+    .floating-title{font-size:.9rem;margin-bottom:.25rem;color:var(--text-main);}
+    .floating-badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45rem;margin-top:.5rem;}
+    .floating-badge{
+      padding:.38rem .45rem;border-radius:.9rem;font-size:.7rem;
+      border:1px solid rgba(241,192,106,0.9);
+      background:radial-gradient(circle at top left,rgba(241,192,106,0.26),transparent 70%);
+    }
+
+    section{padding:2.5rem 0 0;}
+    .section-header{
+      display:flex;justify-content:space-between;align-items:flex-end;
+      gap:1.2rem;margin-bottom:1.9rem;
+    }
+    .section-kicker{
+      font-size:.76rem;text-transform:uppercase;letter-spacing:.2em;color:var(--text-muted);
+    }
+    .section-title{
+      font-family:"Space Grotesk",sans-serif;font-size:1.7rem;
+    }
+    .section-text{
+      font-size:.9rem;color:var(--text-muted);max-width:32rem;line-height:1.6;
+    }
+
+    .cards-grid{
+      display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.05rem;
+    }
+    .info-card{
+      border-radius:1.3rem;padding:1.05rem 1rem 1.2rem;
+      border:1px solid var(--border-soft);
+      background:radial-gradient(circle at top,rgba(255,255,255,0.04),rgba(7,13,25,0.98));
+      box-shadow:0 14px 34px rgba(0,0,0,0.9);
+      font-size:.84rem;color:var(--text-muted);
+      transition:transform var(--transition-fast),box-shadow var(--transition-fast),border-color var(--transition-fast);
+    }
+    .info-card:hover{
+      transform:translateY(-5px);
+      box-shadow:0 20px 46px rgba(0,0,0,0.98);
+      border-color:rgba(241,192,106,0.9);
+    }
+    .info-card-title{font-size:.98rem;margin-bottom:.35rem;color:var(--text-main);}
+
+    .gallery-grid{
+      display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.7rem;
+      margin-top:1.7rem;
+    }
+    .gallery-grid img{
+      width:100%;height:130px;border-radius:.9rem;object-fit:cover;
+      filter:brightness(0.96);transition:transform .4s ease,filter .4s ease;
+    }
+    .gallery-grid img:hover{transform:scale(1.06);filter:brightness(1.08);}
+
+    .contact-section{margin-bottom:3.1rem;}
+    .contact-card{
+      border-radius:var(--radius-xl);
+      padding:1.6rem 1.8rem 1.8rem;
+      border:1px solid rgba(241,192,106,0.9);
+      background:radial-gradient(circle at top,rgba(241,192,106,0.2),rgba(6,12,24,1));
+      box-shadow:0 18px 42px rgba(0,0,0,0.96);
+      display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1.3fr);
+      gap:2rem;align-items:center;
+      font-size:.9rem;
+    }
+    .contact-grid{
+      display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem 1.6rem;
+      font-size:.86rem;
+    }
+    .info-label{
+      font-size:.76rem;text-transform:uppercase;letter-spacing:.17em;color:rgba(24,16,5,0.96);
+    }
+    .info-value a{
+      color:#160f06;text-decoration:none;border-bottom:1px solid rgba(22,15,6,0.35);
+    }
+    .info-value a:hover{border-color:rgba(22,15,6,0.85);}
+    .contact-note{
+      border-radius:1.2rem;padding:1rem 1.1rem;
+      background:rgba(4,8,16,0.98);border:1px solid rgba(255,255,255,0.25);
+      font-size:.83rem;color:var(--text-muted);
+    }
+
+    footer{
+      border-top:1px solid rgba(255,255,255,0.14);
+      padding:1.6rem 0 2rem;
+      font-size:.78rem;color:var(--text-muted);
+    }
+    .footer-row{
+      display:flex;justify-content:space-between;align-items:center;gap:.8rem;flex-wrap:wrap;
+    }
+
+    @media(max-width:960px){
+      .hero-grid{grid-template-columns:minmax(0,1fr);}
+      .hero-visual{order:-1;}
+      .cards-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+      .gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+      .contact-card{grid-template-columns:minmax(0,1fr);}
+    }
+    @media(max-width:780px){
+      .nav-links{display:none;}
+      .cards-grid{grid-template-columns:minmax(0,1fr);}
+      .gallery-grid{grid-template-columns:minmax(0,1fr);}
+    }
+  </style>
 </head>
 <body>
-
-    <nav>
-        <div class="logo">PAT Cargo VAD LLC</div>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <div class="hero" id="home">
-        <div class="hero-text">
-            <h1>PAT Cargo VAD LLC</h1>
-            <p>Your trusted partner in transportation and warehousing. We provide reliable cargo services and storage solutions to meet your business needs with efficiency and care.</p>
+  <header>
+    <div class="max-width">
+      <nav class="nav">
+        <div class="nav-brand">
+          <div class="nav-logo"><span>SM</span></div>
+          <div class="nav-text">
+            <div class="nav-title">SCI MARBENI G.L.</div>
+            <div class="nav-subtitle">Immobilier & locations</div>
+          </div>
         </div>
-        <div class="hero-img">
-            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=934&q=80" alt="Cargo Services">
+        <div class="nav-links">
+          <a href="#atouts">Atouts</a>
+          <a href="#patrimoine">Patrimoine</a>
+          <a href="#contact">Contact</a>
+          <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+            Contacter la SCI
+          </button>
         </div>
+      </nav>
     </div>
+  </header>
 
-    <div class="section" id="about">
-        <h2>About Us</h2>
-        <p>PAT Cargo VAD LLC is a Domestic LLC based in Arizona, offering specialized services in transportation and warehousing. With a focus on reliability and customer satisfaction, we have been serving businesses since 2021.</p>
-        <p><strong>Registered Address:</strong><br>
-        2902 W Sweetwater Ave, Apt 2190, Phoenix, AZ 85029, United States</p>
+  <main class="max-width">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            38 RUE GRENOUILLIT · 43000 LE PUY-EN-VELAY · FRANCE
+          </div>
+          <h1 class="hero-title">
+            Gestion <span>immobilière</span> et patrimoine locatif au cœur du Puy-en-Velay.
+          </h1>
+          <p class="hero-subtitle">
+            La <strong>SCI MARBENI G.L.</strong> détient et gère un portefeuille
+            de biens destinés à la location, en mettant l’accent sur la qualité,
+            la pérennité et la relation de confiance avec ses occupants.
+          </p>
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="document.getElementById('patrimoine').scrollIntoView({behavior:'smooth'})">
+              Découvrir les biens
+            </button>
+            <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+              Prendre contact
+            </button>
+          </div>
+          <div class="hero-meta">
+            <div>
+              <div class="meta-label">Contact</div>
+              <div class="meta-value">
+                <a href="mailto:info@morvica.shop">info@morvica.shop</a><br>
+                <a href="tel:+33774455960">+33 7 74 45 59 60</a>
+              </div>
+            </div>
+            <div>
+              <div class="meta-label">Typologie</div>
+              <div class="meta-value">Locations résidentielles et actifs immobiliers en Auvergne Rhône Alpes.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-card">
+            <div class="hero-chip">Vue d’ensemble du patrimoine</div>
+            <div class="hero-images-grid">
+              <div class="hero-img-main">
+                <img src="https://i.pinimg.com/originals/9b/e6/08/9be60870c38d6616297e8988ae6e235f.jpg" alt="Immeuble moderne de logements">
+              </div>
+              <div style="display:flex;flex-direction:column;gap:.8rem;">
+                <div class="hero-img-small">
+                  <img src="https://avatars.mds.yandex.net/i?id=5c56ea8467094e36f7fa592dcfa994092a9f89dd-5175011-images-thumbs&n=13" alt="Vue d'immeuble urbain">
+                </div>
+                <div class="hero-img-small">
+                  <img src="https://miro.medium.com/v2/resize:fit:977/1*w9x-k9oGAa3QyUFu15Sz2Q.jpeg" alt="Quartier immobilier de nuit">
+                </div>
+              </div>
+            </div>
+            <div class="hero-floating">
+              <div class="floating-title">Patrimoine géré avec une vision long terme</div>
+              <div>
+                Sélection de biens situés dans des environnements urbains dynamiques,
+                avec une attention particulière portée à l’entretien, à la sécurité
+                et au confort des occupants.
+              </div>
+              <div class="floating-badges">
+                <div class="floating-badge">Gestion structurée des baux et locataires.</div>
+                <div class="floating-badge">Travaux et améliorations suivis dans la durée.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ATOUTS -->
+    <section id="atouts">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Gestion immobilière</div>
+          <h2 class="section-title">Les atouts de la SCI MARBENI G.L.</h2>
+        </div>
+        <p class="section-text">
+          En tant que <strong>société civile immobilière</strong>, la SCI MARBENI G.L.
+          structure la détention de ses immeubles et assure une gestion rigoureuse
+          des locations, depuis la mise à disposition jusqu’au suivi quotidien.
+        </p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="info-card">
+          <div class="info-card-title">Approche patrimoniale</div>
+          Une vision de long terme qui privilégie des biens bien situés, entretenus
+          et cohérents avec la stratégie de détention de la société.
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">Relation locative</div>
+          Un interlocuteur identifié, des échanges clairs et une attention portée
+          aux besoins des occupants, particuliers comme professionnels.
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">Suivi des actifs</div>
+          Planification des travaux, contrôles réguliers et optimisation technique
+          pour préserver la valeur et le confort des immeubles.
+        </div>
+      </div>
+    </section>
+
+    <!-- PATRIMOINE / GALERIE -->
+    <section id="patrimoine">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Immeubles & environnement</div>
+          <h2 class="section-title">Un patrimoine ancré au Puy-en-Velay</h2>
+        </div>
+        <p class="section-text">
+          Située au <strong>38 rue Grenouillit, 43000 Le Puy-en-Velay</strong>,
+          la SCI MARBENI G.L. se développe dans un tissu urbain vivant, proche
+          des commodités, services et infrastructures du centre-ville.
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+        <img src="https://i.pinimg.com/originals/9b/e6/08/9be60870c38d6616297e8988ae6e235f.jpg" alt="Façade d'immeuble">
+        <img src="https://avatars.mds.yandex.net/i?id=5c56ea8467094e36f7fa592dcfa994092a9f89dd-5175011-images-thumbs&n=13" alt="Bâtiment résidentiel">
+        <img src="https://miro.medium.com/v2/resize:fit:977/1*w9x-k9oGAa3QyUFu15Sz2Q.jpeg" alt="Quartier immobilier">
+        <img src="https://i.pinimg.com/originals/67/80/a3/6780a3100075ba0d722cfe8833b489ae.jpg" alt="Vue intérieure moderne">
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+      <div class="contact-card">
+        <div>
+          <h2 class="section-title">Prendre contact avec la SCI</h2>
+          <p style="margin:0 0 1.2rem;font-size:.9rem;color:var(--text-muted);max-width:32rem;">
+            Pour toute demande de renseignement sur un bien, une location en cours
+            ou un projet autour du patrimoine immobilier de la SCI MARBENI G.L.,
+            vous pouvez utiliser les coordonnées ci-dessous.
+          </p>
+
+          <div class="contact-grid">
+            <div>
+              <div class="info-label">Email</div>
+              <div class="info-value">
+                <a href="mailto:info@morvica.shop">info@morvica.shop</a>
+              </div>
+            </div>
+            <div>
+              <div class="info-label">Téléphone</div>
+              <div class="info-value">
+                <a href="tel:+33774455960">+33 7 74 45 59 60</a>
+              </div>
+            </div>
+            <div>
+              <div class="info-label">Adresse</div>
+              <div class="info-value">
+                38 rue Grenouillit<br>
+                43000 Le Puy-en-Velay<br>
+                Auvergne Rhône Alpes · France
+              </div>
+            </div>
+            <div>
+              <div class="info-label">Thèmes possibles</div>
+              <div class="info-value">
+                Informations sur un logement, suivi de bail, questions techniques
+                ou administratives liées aux biens détenus par la SCI.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="contact-note">
+            🏙️ <strong>Infos pratiques</strong><br>
+            Lors de votre message, pensez à préciser le bien concerné, votre
+            situation (locataire, candidat, partenaire…) et vos coordonnées
+            complètes afin de faciliter le retour de la SCI.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="max-width footer-row">
+      <span>© <span id="year"></span> SCI MARBENI G.L. · Tous droits réservés.</span>
+      <span>Gestion et détention immobilière – Le Puy-en-Velay, Auvergne Rhône Alpes.</span>
     </div>
+  </footer>
 
-    <div class="section contact" id="contact">
-        <h2>Contact Us</h2>
-        <p><strong>Email:</strong> <a href="mailto:contact@patcargovadllc.click">contact@patcargovadllc.click</a></p>
-        <p><strong>Agent Address:</strong><br>
-        2902 W Sweetwater Ave, Apt 2190, Phoenix, AZ 85029, United States</p>
-    </div>
-
-    <footer>
-        &copy; 2025 PAT Cargo VAD LLC. All rights reserved.
-    </footer>
-
-    <script>
-        // Intersection Observer for fade-in effect
-        const sections = document.querySelectorAll('.section');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-    </script>
-
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
